@@ -36,8 +36,9 @@ public class SecurityConfig  {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/v1/**")
+                .antMatchers(HttpMethod.GET, "/api/**")
                 .permitAll()
+                .antMatchers("/api/auth/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -51,6 +52,8 @@ public class SecurityConfig  {
             AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
+
+
 
     /*@Bean
     protected UserDetailsService userDetailsService() {
